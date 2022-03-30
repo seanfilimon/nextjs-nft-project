@@ -1,14 +1,18 @@
-import connectDB from "middleware/mongodb";
+import connectDB from "../../../middleware/mongodb";
 
-import Item from "models/Item";
+const Item = require('../../../models/Item')
 
 async function handler(req, res) {
+    const { type } = req.query
+    const { amount } = req.query
+
+    const all = type == 'all'
     if(req.method === "GET") {
-        Item.find({}).then(items => {
+
+        all ? Item.find({}).then(items => {
             return res.status(200).json(items)
-        })
-        res.status(400).json({
-            message: "Bad request"
+        }) : Item.find({ typeOfItem: type }).then(items => {
+            return res.status(200).json(items)
         })
     } else {
         return res.status(400).json({error: "Invalid request"})

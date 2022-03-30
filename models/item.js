@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose')
 
 const ItemSchema = new mongoose.Schema({
     name: String,
@@ -41,4 +41,4 @@ const ItemSchema = new mongoose.Schema({
 
 const ItemModel = mongoose.models.Item || mongoose.model("Item", ItemSchema);
 
-export default ItemModel;
+module.exports = ItemModel

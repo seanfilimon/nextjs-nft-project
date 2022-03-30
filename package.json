@@ -1,10 +1,15 @@
 {
+  "main": "server.js",
   "private": true,
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
     "start": "cross-env NODE_ENV=production node server.js"
   },
+  "engines": {
+    "node": "14.x"
+  },
+  
   "dependencies": {
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.8.2",

@@ -30,12 +30,13 @@ export default function SearchMarketplace() {
             type: category,
             amount: renderQuanity,
         })
-      const response = await fetch(`${process.env.API_URL}/api/explore/list?${params}`);
+        const response = await fetch(`https://fabwelt.vercel.app/api/explore/list?${params}`);
       const data = await response.json();
       setResults(data);
     }
     useEffect(() => {
-       fetchNfts();
+      setResults([]);
+      fetchNfts();
     }, [])
 
     const chooseCategory = (e) => {
@@ -58,12 +59,12 @@ export default function SearchMarketplace() {
             </>
         )
     }
-    const renderItem = (id, typeOfItem, listing, auction) => {
+    const renderItem = (typeOfItem, listing, auction, key) => {
       try {
         switch(typeOfItem) {
-          case 'listing':
+          case "listing":
             return viewMobile ? (
-              <div className="w-full md:w-1/2 py-3 px-0 md:px-2" key={id}>
+              <div className="w-full md:w-1/2 py-3 px-0 md:px-2" key={key}>
               <div className="w-full h-42 bg-gray-800 border border-green-400 px-3 py-2 rounded-6xl">
                   <div className="flex flex-row w-full h-34 px-1">
                       <div className="w-1/3 inline-flex h-34">
@@ -86,7 +87,7 @@ export default function SearchMarketplace() {
                   </div>    
               </div>    
             ) : (
-              <div className="w-full md:w-1/5 p-2" key={id}>
+              <div className="w-full md:w-1/5 p-2" key={key}>
               <div className="w-full bg-gray-800 border border-green-400 px-6 py-2 rounded-6xl">
                 <div className="flex flex-row my-2"> 
                   <img className="w-12 bg-gray-900 text-white rounded-full h-12 mr-2" src="/assets/fabwelt.svg" /> 
@@ -113,10 +114,10 @@ export default function SearchMarketplace() {
             </div>
             )
             break;
-          case 'auction':
+          case "auction":
             
             return viewMobile ? (
-              <div className="w-full md:w-1/2 py-3 px-0 md:px-2" key={id}>
+              <div className="w-full md:w-1/2 py-3 px-0 md:px-2" key={key}>
               <div className="w-full h-42 bg-gray-800 border border-yellow-400 px-3 py-2 rounded-6xl">
                   <div className="flex flex-row w-full h-34 px-1">
                       <div className="w-1/3 inline-flex h-34">
@@ -138,7 +139,7 @@ export default function SearchMarketplace() {
                   </div>    
               </div>    
             ) : (
-              <div className="w-full md:w-1/5 p-2" key={id}>
+              <div className="w-full md:w-1/5 p-2" key={key}>
               <div className="w-full bg-gray-800 px-6 py-2 rounded-6xl border border-blue-500">
                 <div className="flex flex-row my-2"> 
                   <img className="w-12 bg-gray-900 text-white rounded-full h-12 mr-2" src="/assets/fabwelt.svg" /> 
@@ -188,8 +189,9 @@ export default function SearchMarketplace() {
         </ul>
         <div className="flex flex-wrap -mx-4 px-6 md:px-0 mb-12 md:mb-20">
           { /* Render a list of 12 renderAuctionItems based on the first 12 items from results*/ }
-
-          { results.slice(0, 12).map((v) => renderItem(v.typeOfItem, v.listing, v.auction)) }
+          {results.slice(0, 12).map((item, index) => {
+            return renderItem(item.typeOfItem, item.listing, item.auction, index)
+          })}
         </div>
         <a className="flex items-center justify-center py-2 px-4 mx-auto teaxt-sm leading-5 text-green-50 font-medium bg-violet-500 hover:bg-violet-600 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 md:max-w-max rounded-md" href="#">
           <span className="mr-3">Explore More</span>
