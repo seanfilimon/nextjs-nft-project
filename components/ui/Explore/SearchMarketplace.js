@@ -30,7 +30,7 @@ export default function SearchMarketplace() {
             type: category,
             amount: renderQuanity,
         })
-      const response = await fetch(`https://fabwelt.vercel.app/api/explore/list?${params}`);
+      const response = await fetch(`${process.env.API_URL}/api/explore/list?${params}`);
       const data = await response.json();
       setResults(data);
     }
