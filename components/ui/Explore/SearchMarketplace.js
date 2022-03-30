@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useRecoilState } from 'recoil';
 
-const apiURL = process.env.API_URI || 'http://localhost:3000'
 export default function SearchMarketplace() {
     const [viewMobile, setViewMobile] = React.useState(false);
     const [category, setCategory] = React.useState("all");
@@ -31,7 +30,7 @@ export default function SearchMarketplace() {
             type: category,
             amount: renderQuanity,
         })
-      const response = await fetch(`http://localhost:3000/api/explore/list?${params}`);
+      const response = await fetch(`https://fabwelt.vercel.app/api/explore/list?${params}`);
       const data = await response.json();
       setResults(data);
     }
