@@ -1,6 +1,6 @@
-import connectDB from "../../../middleware/mongodb";
+import connectDB from "middleware/mongodb";
 
-const Item = require('../../../models/Item')
+const Item = require('models/Item')
 
 async function handler(req, res) {
     const { type } = req.query
