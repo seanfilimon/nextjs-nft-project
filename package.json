@@ -1,6 +1,7 @@
 {
   "main": "server.js",
   "private": true,
+  "target": "node",
   "scripts": {
     "start": "next start -p $PORT",
     "build": "next build"
