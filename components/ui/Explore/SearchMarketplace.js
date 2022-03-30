@@ -25,7 +25,7 @@ export default function SearchMarketplace() {
         return () => window.removeEventListener('resize', handleResize)
     }, [])
 
-    const fetchNfts = async (searchCategory) => {
+    const fetchNfts = async () => {
         const params = new URLSearchParams({
             type: category,
             amount: renderQuanity,
@@ -35,7 +35,6 @@ export default function SearchMarketplace() {
       setResults(data);
     }
     useEffect(() => {
-       setResults([]);
        fetchNfts();
     }, [])
 
