@@ -1,6 +1,6 @@
-import connectDB from "../../../middleware/mongodb";
+import connectDB from "middleware/mongodb";
 
-import Item from "../../../models/Item";
+import Item from "models/Item";
 
 async function handler(req, res) {
     if(req.method === "GET") {
