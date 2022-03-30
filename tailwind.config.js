@@ -4,6 +4,7 @@ module.exports = {
   purge: [
     './pages/**/*.{js,jsx,ts,tsx}',
     './components/**/*.{js,jsx,ts,tsx}',
+    './middleware/**/*.{js,jsx,ts,tsx}',
   ],
     theme: {
         screens: {
